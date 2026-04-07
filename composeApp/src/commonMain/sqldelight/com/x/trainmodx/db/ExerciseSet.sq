@@ -1,0 +1,23 @@
+CREATE TABLE ExerciseSet (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    exerciseId INTEGER NOT NULL,
+    number INTEGER NOT NULL,
+    targetReps INTEGER,
+    targetTimeSeconds INTEGER,
+    targetWeightKg REAL,
+    FOREIGN KEY (exerciseId) REFERENCES Exercise(id) ON DELETE CASCADE
+);
+
+insert:
+INSERT INTO ExerciseSet (exerciseId, number, targetReps, targetTimeSeconds, targetWeightKg)
+VALUES (?, ?, ?, ?, ?);
+
+getByExercise:
+SELECT * FROM ExerciseSet WHERE exerciseId = ? ORDER BY number ASC;
+
+update:
+UPDATE ExerciseSet SET number = ?, targetReps = ?, targetTimeSeconds = ?, targetWeightKg = ?
+WHERE id = ?;
+
+deleteById:
+DELETE FROM ExerciseSet WHERE id = ?;
