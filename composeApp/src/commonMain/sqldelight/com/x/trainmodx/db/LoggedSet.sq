@@ -1,0 +1,26 @@
+CREATE TABLE LoggedSet (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    sessionId INTEGER NOT NULL,
+    exerciseSetId INTEGER NOT NULL,
+    actualWeightKg REAL,
+    actualReps INTEGER,
+    actualTimeSeconds INTEGER,
+    isCompleted INTEGER NOT NULL DEFAULT 0,
+    note TEXT NOT NULL DEFAULT '',
+    FOREIGN KEY (sessionId) REFERENCES Session(id) ON DELETE CASCADE,
+    FOREIGN KEY (exerciseSetId) REFERENCES ExerciseSet(id) ON DELETE CASCADE
+);
+
+insert:
+INSERT INTO LoggedSet (sessionId, exerciseSetId, actualWeightKg, actualReps, actualTimeSeconds, isCompleted, note)
+VALUES (?, ?, ?, ?, ?, ?, ?);
+
+getBySession:
+SELECT * FROM LoggedSet WHERE sessionId = ? ORDER BY id ASC;
+
+getByExerciseSet:
+SELECT * FROM LoggedSet WHERE exerciseSetId = ? ORDER BY id DESC;
+
+update:
+UPDATE LoggedSet SET actualWeightKg = ?, actualReps = ?, actualTimeSeconds = ?, isCompleted = ?, note = ?
+WHERE id = ?;

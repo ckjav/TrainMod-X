@@ -1,0 +1,30 @@
+CREATE TABLE Plan (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    startDate INTEGER NOT NULL,
+    totalWeeks INTEGER NOT NULL DEFAULT 5,
+    isActive INTEGER NOT NULL DEFAULT 0
+);
+
+insert:
+INSERT INTO Plan (name, startDate, totalWeeks, isActive)
+VALUES (?, ?, ?, ?);
+
+getActive:
+SELECT * FROM Plan WHERE isActive = 1 LIMIT 1;
+
+getAll:
+SELECT * FROM Plan ORDER BY startDate DESC;
+
+setActive:
+UPDATE Plan SET isActive = 1 WHERE id = ?;
+
+deactivateAll:
+UPDATE Plan SET isActive = 0;
+
+deleteById:
+DELETE FROM Plan WHERE id = ?;
+
+updatePlan:
+UPDATE Plan SET name = ?, startDate = ?, totalWeeks = ?, isActive = ?
+WHERE id = ?;

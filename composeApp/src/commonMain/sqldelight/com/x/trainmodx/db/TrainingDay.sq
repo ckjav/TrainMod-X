@@ -1,0 +1,23 @@
+CREATE TABLE TrainingDay (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    weekId INTEGER NOT NULL,
+    dayOfWeek TEXT NOT NULL,
+    label TEXT NOT NULL DEFAULT '',
+    FOREIGN KEY (weekId) REFERENCES Week(id) ON DELETE CASCADE
+);
+
+insert:
+INSERT INTO TrainingDay (weekId, dayOfWeek, label)
+VALUES (?, ?, ?);
+
+getByWeek:
+SELECT * FROM TrainingDay WHERE weekId = ? ORDER BY dayOfWeek ASC;
+
+update:
+UPDATE TrainingDay SET dayOfWeek = ?, label = ? WHERE id = ?;
+
+deleteById:
+DELETE FROM TrainingDay WHERE id = ?;
+
+getById:
+SELECT * FROM TrainingDay WHERE id = ?;

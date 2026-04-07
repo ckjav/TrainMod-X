@@ -1,0 +1,23 @@
+CREATE TABLE InjuryLog (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    date INTEGER NOT NULL,
+    type TEXT NOT NULL,
+    bodyZone TEXT NOT NULL,
+    description TEXT NOT NULL,
+    medication TEXT NOT NULL DEFAULT '',
+    dosage TEXT NOT NULL DEFAULT '',
+    estimatedDays INTEGER NOT NULL DEFAULT 0
+);
+
+insert:
+INSERT INTO InjuryLog (date, type, bodyZone, description, medication, dosage, estimatedDays)
+VALUES (?, ?, ?, ?, ?, ?, ?);
+
+getAll:
+SELECT * FROM InjuryLog ORDER BY date DESC;
+
+getByZone:
+SELECT * FROM InjuryLog WHERE bodyZone = ? ORDER BY date DESC;
+
+getFromDate:
+SELECT * FROM InjuryLog WHERE date >= ? ORDER BY date DESC;

@@ -1,0 +1,23 @@
+CREATE TABLE Exercise (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    groupId INTEGER NOT NULL,
+    name TEXT NOT NULL,
+    orderIndex INTEGER NOT NULL,
+    measureType TEXT NOT NULL,
+    equipment TEXT NOT NULL DEFAULT 'BODYWEIGHT',
+    FOREIGN KEY (groupId) REFERENCES ExerciseGroup(id) ON DELETE CASCADE
+);
+
+insert:
+INSERT INTO Exercise (groupId, name, orderIndex, measureType, equipment)
+VALUES (?, ?, ?, ?, ?);
+
+getByGroup:
+SELECT * FROM Exercise WHERE groupId = ? ORDER BY orderIndex ASC;
+
+update:
+UPDATE Exercise SET name = ?, orderIndex = ?, measureType = ?, equipment = ?
+WHERE id = ?;
+
+deleteById:
+DELETE FROM Exercise WHERE id = ?;

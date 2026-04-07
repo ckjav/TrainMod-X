@@ -1,0 +1,24 @@
+CREATE TABLE ExerciseGroup (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    trainingDayId INTEGER NOT NULL,
+    type TEXT NOT NULL,
+    orderIndex INTEGER NOT NULL,
+    restMinSeconds INTEGER NOT NULL DEFAULT 45,
+    restIdealSeconds INTEGER NOT NULL DEFAULT 67,
+    restMaxSeconds INTEGER NOT NULL DEFAULT 90,
+    FOREIGN KEY (trainingDayId) REFERENCES TrainingDay(id) ON DELETE CASCADE
+);
+
+insert:
+INSERT INTO ExerciseGroup (trainingDayId, type, orderIndex, restMinSeconds, restIdealSeconds, restMaxSeconds)
+VALUES (?, ?, ?, ?, ?, ?);
+
+getByDay:
+SELECT * FROM ExerciseGroup WHERE trainingDayId = ? ORDER BY orderIndex ASC;
+
+update:
+UPDATE ExerciseGroup SET type = ?, orderIndex = ?, restMinSeconds = ?, restIdealSeconds = ?, restMaxSeconds = ?
+WHERE id = ?;
+
+deleteById:
+DELETE FROM ExerciseGroup WHERE id = ?;
