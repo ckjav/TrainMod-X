@@ -5,6 +5,7 @@ import com.x.trainmodx.domain.model.TrainingDay
 import com.x.trainmodx.domain.repository.PlanRepository
 import com.x.trainmodx.domain.repository.TrainingDayRepository
 import com.x.trainmodx.domain.repository.WeekRepository
+import com.x.trainmodx.currentDayOfWeek
 
 class GetTodayTrainingDayUseCase(
     private val planRepository: PlanRepository,
@@ -24,21 +25,6 @@ class GetTodayTrainingDayUseCase(
         return null
     }
 
-    // TODO: Replace with kotlinx-datetime in Sprint 2
-    private fun getTodayDayOfWeek(): DayOfWeek = DayOfWeek.MONDAY
-    // TODO: Detect actual day of week using kotlinx-datetime in Sprint 2
-    /*
-    private fun getTodayDayOfWeek(): DayOfWeek {
-        val calendar = java.util.Calendar.getInstance()
-        return when (calendar.get(java.util.Calendar.DAY_OF_WEEK)) {
-            java.util.Calendar.MONDAY -> DayOfWeek.MONDAY
-            java.util.Calendar.TUESDAY -> DayOfWeek.TUESDAY
-            java.util.Calendar.WEDNESDAY -> DayOfWeek.WEDNESDAY
-            java.util.Calendar.THURSDAY -> DayOfWeek.THURSDAY
-            java.util.Calendar.FRIDAY -> DayOfWeek.FRIDAY
-            java.util.Calendar.SATURDAY -> DayOfWeek.SATURDAY
-            else -> DayOfWeek.MONDAY
-        }
-    }
-    */
+    private fun getTodayDayOfWeek(): DayOfWeek = currentDayOfWeek()
+
 }
