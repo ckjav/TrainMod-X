@@ -144,11 +144,18 @@ injury/
 - [x] Configurar GitHub rama main
 
 ### Pendiente Sprint 1-2
-- [ ] Esquema SQL SQLDelight (archivos .sq)
+- [x] Esquema SQL SQLDelight (archivos .sq) ✅
 - [ ] Driver SQLDelight para Android
 - [ ] Implementaciones de repositorios en data/
 - [ ] Koin setup (inyección de dependencias)
 - [ ] Agregar kotlinx-datetime (reemplazar TimeUtils TODOs)
 
-## Próximo paso
-Crear esquema SQL en SQLDelight (archivos .sq en commonMain/sqldelight/)
+## Comandos útiles
+- Compilar: ./gradlew composeApp:compileDebugKotlinAndroid
+- Generar SQLDelight: ./gradlew composeApp:generateSqlDelightInterface
+- Build completo: ./gradlew build
+
+## Nota
+- Nombre de la base de datos en SQLDelight: TrainModX (no GymAppDatabase)
+- Archivos .sq en: composeApp/src/commonMain/sqldelight/com/x/trainmodx/db/
+
